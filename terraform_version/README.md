@@ -2,7 +2,7 @@
 
 Tag commit with the correct version of the module as described below:
 ```
-git tag -a terraform_version-0.10.7 -m "Creation of ECS service module"
+git tag -a terraform_version-0.10.7 -m "Terraform version 0.10.7"
 git push origin terraform_version-0.10.7
 ```
 
