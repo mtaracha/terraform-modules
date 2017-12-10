@@ -26,19 +26,19 @@ resource "aws_cloudwatch_log_group" "log" {
 resource "aws_ecs_task_definition" "task_definition" {
   family = "${var.service_name}"
   volume {
-    name = "stepweb_configs"
-    host_path = "/etc/stepweb/${var.service_name}"
+    name = "configs"
+    host_path = "/etc/org/${var.service_name}"
   }
   volume {
-    name = "stepweb_logs"
-    host_path = "/var/log/trufa/${var.service_name}"
+    name = "logs"
+    host_path = "/var/log/org/${var.service_name}"
   }
   container_definitions = <<DEFINITIONS
 [
   {
     "cpu": ${var.cpu},
     "essential": true,
-    "image": "registry.trufa.me/trufa/${var.service_name}:${var.image_tag}",
+    "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.eu-west-1.amazonaws.com/${var.service_name}:${var.image_tag}",
     "memory": ${var.memory},
     "logConfiguration": {
         "logDriver": "awslogs",
@@ -65,12 +65,12 @@ resource "aws_ecs_task_definition" "task_definition" {
     ],
     "mountPoints": [
       {
-        "containerPath": "/etc/stepweb/${var.service_name}",
-        "sourceVolume": "stepweb_configs"
+        "containerPath": "/etc/org/${var.service_name}",
+        "sourceVolume": "configs"
       },
       {
-        "containerPath": "/var/log/trufa/${var.service_name}",
-        "sourceVolume": "stepweb_logs"
+        "containerPath": "/var/log/org/${var.service_name}",
+        "sourceVolume": "logs"
       }
     ],
     "portMappings": [
@@ -83,14 +83,11 @@ resource "aws_ecs_task_definition" "task_definition" {
 DEFINITIONS
 }
 /*
-  TG - for service
-*/
-/*
   ALB target group
 */
 resource "aws_alb_target_group" "ecs_tg" {
   name     = "${var.service_name}"
-  port     = "80" // port will be random choosen by ecs agent
+  port     = "80" // port will be randomly picked by ecs agent
   protocol = "HTTP"
   vpc_id   = "${data.terraform_remote_state.ecs.vpc_id}"
   deregistration_delay = "${var.deregistration_delay}"
