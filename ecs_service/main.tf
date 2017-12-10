@@ -127,7 +127,7 @@ resource "aws_alb_listener_rule" "alb_routing" {
 
   condition {
     field  = "host-header"
-    values = ["${var.environment}-${var.service_name}.trufa.me"]
+    values = ["${var.environment}-${var.service_name}.thedevsecops.com"]
   }
 }
 
@@ -142,7 +142,7 @@ resource "aws_alb_listener_rule" "alb_routing_color" {
 
   condition {
     field  = "host-header"
-    values = ["${var.environment}-${var.color}-${var.service_name}.trufa.me"]
+    values = ["${var.environment}-${var.color}-${var.service_name}.thedevsecops.com"]
   }
 }
 
