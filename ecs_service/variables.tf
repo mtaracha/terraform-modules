@@ -16,6 +16,9 @@ variable "image_tag" {
   description = "docker image tag i.e. master.9"
 }
 
+/*
+  ALB settings
+*/
 variable "alb_listener_rule_priority" {
   default     = "99" # This needs to be changed at module definition level!!!
   description = "The priority for the rule. A listener can't have multiple rules with the same priority"
@@ -26,6 +29,15 @@ variable "deregistration_delay" {
   description = "The amount time for ALB to wait before changing the state of a deregistering target from draining to unused. The range is 0-3600 seconds. The default value is 300 seconds"
 }
 
+variable "health_check_matcher" {
+  default     = "200-499"
+  description = "ALB target group expected health check HTTP status code"
+}
+
+variable "health_check_path" {
+  default     = "/"
+  description = "ALB target group expected health check url route"
+}
 /*
   Resource allocation
 */

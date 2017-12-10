@@ -93,8 +93,8 @@ resource "aws_alb_target_group" "ecs_tg" {
   deregistration_delay = "${var.deregistration_delay}"
 
   health_check {
-    path = "/"
-    matcher = "200-499"
+    path = "${var.health_check_path}"
+    matcher = "${var.health_check_matcher}"
   }
 }
 /*
