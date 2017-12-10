@@ -9,4 +9,7 @@ i.e.
 git tag -a ecs_service-0.0.1 -m "Creation of ECS service module"
 git push origin ecs_service-0.0.1
 ```
-  source = "git::ssh://git@github.com:mtaracha/terraform-modules.git//modules/ecs_service?ref=ecs_service-latest"
+And add source of the module as presented below:
+```
+  source = "git::ssh://git@github.com:mtaracha/terraform-modules.git//ecs_service?ref=ecs_service-latest"
+```
