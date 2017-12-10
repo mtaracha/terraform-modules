@@ -1,5 +1,5 @@
 /*
-
+  General settings
 */
 variable "service_name" {
   default     = "pathfinder"
