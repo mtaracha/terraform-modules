@@ -67,7 +67,6 @@ variable "color" {
 }
 
 variable "r53_zone" {
-  default = "ZW6IDLJZXY2S9"
   description = "DNS zone in Route53"
 }
 
@@ -76,12 +75,10 @@ variable "r53_zone" {
 */
 
 variable "tf_state_bucket" {
-  default = "terraform-state-stepweb-dev"
   description = "tf state bucket"
 }
 
 variable "tf_state_key" {
-  default = "dev_env_dev_pipeline.tfenv"
   description = "state file of main infrastructure"
 }
 
