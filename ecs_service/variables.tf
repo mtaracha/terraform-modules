@@ -3,7 +3,7 @@
 */
 variable "service_name" {
   default     = "pathfinder"
-  description = "Name of the service i.e. pathfinder"
+  description = "Name of the service i.e. webapp"
 }
 
 variable "container_port" {
@@ -61,7 +61,7 @@ variable "desired_count" {
   IAM settings
 */
 variable "iam_role" {
-  default = "arn:aws:iam::796467622059:role/ecsServiceRole"
+  default = "arn:aws:iam::003425684339:role/ecsServiceRole"
   description = "IAM role for ECS Service"
 }
 
