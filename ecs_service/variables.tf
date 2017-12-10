@@ -2,7 +2,7 @@
   General settings
 */
 variable "service_name" {
-  default     = "pathfinder"
+  default     = "webapp"
   description = "Name of the service i.e. webapp"
 }
 
